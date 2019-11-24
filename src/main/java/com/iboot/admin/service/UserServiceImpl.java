@@ -1,21 +1,32 @@
 package com.iboot.admin.service;
 
 import com.iboot.admin.domain.User;
-import com.iboot.core.repository.BaseRepository;
+import com.iboot.admin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
 
   @Autowired
-  private BaseRepository baseRepository;
-
+  UserRepository userRepository;
 
   @Override
   public void insert(User user) {
-    String sql = "insert into t_user(id,name,email) values (:id,:name,:email)";
-    baseRepository.update(sql,new BeanPropertySqlParameterSource(user));
+    userRepository.save(user);
   }
+
+  @Override
+  public List<User> query() {
+    return userRepository.query("select * from user");
+  }
+
+  @Override
+  public List<Map<String, Object>> queryMap() {
+    return userRepository.queryForMap("select * from user");
+  }
+
 }
