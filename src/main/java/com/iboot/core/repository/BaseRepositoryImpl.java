@@ -32,6 +32,9 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
    */
   @Override
   public List<Object[]> queryForList(String sql) {
+//    Query query = em.createNamedQuery(Employee.SALARY_RANGE_QUERY);
+//    query.setParameter("min", 2000L);
+//    query.setParameter("max", 4000L);
     return entityManager.createNativeQuery(sql).getResultList();
   }
 
@@ -97,6 +100,5 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
   public Class<T> getDataClass() {
     return klass;
   }
-
 
 }
