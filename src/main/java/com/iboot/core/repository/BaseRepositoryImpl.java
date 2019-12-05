@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -107,19 +108,41 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     return klass;
   }
 
-  public Page<T> getPagingResultList(StringBuffer sql, int page, int size, Sort sort){
-    return getPagingResult(ResultType.Map,sql,page,size,sort);
+  public Page<T> queryPagingResultList(StringBuffer sql, int page, int size, Sort sort){
+    return queryPagingResult(ResultType.List,sql,page,size,sort);
   }
 
-  public Page<T> getPagingResultMap(StringBuffer sql, int page, int size, Sort sort){
-    return getPagingResult(ResultType.Map,sql,page,size,sort);
+  public Page<Map<String, Object>> queryPagingResultMap(StringBuffer sql, int page, int size, Sort sort){
+    //查詢記錄條數
+    String countSql = "select count(1) as cnt from (" + sql.toString() + ") temp ";
+    //創建查詢對象
+    Query countQuery = entityManager.createNativeQuery(countSql);
+    //獲取總記錄數
+    Object totalCount = countQuery.getSingleResult();
+    //分頁查詢
+    Query queryData = entityManager.createNativeQuery(sql.toString());
+    queryData.setFirstResult(page * size);//當前頁總記錄數
+    queryData.setMaxResults(size);//每頁數量數
+
+    List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
+    queryData.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+
+    try {
+      data = queryData.getResultList();
+    } catch(Exception e) {
+      logger.info("執行獲取集合(帶分頁)出錯--{}", e.getMessage());
+    }
+
+    //設置分頁信息
+    Page<Map<String, Object>> pageInfo = new PageImpl<Map<String, Object>>(data, PageRequest.of(page, size, sort), Long.valueOf(totalCount.toString()));
+    return pageInfo;
   }
 
   /**
    * 獲取集合(帶分頁)
    * @author panda
    */
-  private Page<T> getPagingResult(ResultType restltType, StringBuffer sql, int page, int size, Sort sort){
+  private Page<T> queryPagingResult(ResultType restltType, StringBuffer sql, int page, int size, Sort sort){
 
     //查詢記錄條數
     String countSql = "select count(1) as cnt from (" + sql.toString() + ") temp ";

@@ -1,5 +1,7 @@
 package com.iboot.core.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -57,7 +59,9 @@ public interface BaseRepository<T,ID extends Serializable> extends JpaRepository
    */
   int execute(String sql);
 
-
-
   Class<T> getDataClass();
+
+
+  Page<T> queryPagingResultList(StringBuffer sql, int page, int size, Sort sort);
+  Page<Map<String, Object>> queryPagingResultMap(StringBuffer sql, int page, int size, Sort sort);
 }

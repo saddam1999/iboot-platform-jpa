@@ -1,9 +1,11 @@
 package com.iboot;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.iboot.demo.account.domain.AccountDemo;
+import com.iboot.demo.account.repository.AccountDemoRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,6 +25,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
+import java.util.Map;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
@@ -30,6 +37,9 @@ public class AccountDemoTest {
 
   @Autowired
   protected WebApplicationContext wac;
+
+  @Autowired
+  private AccountDemoRepository accountDemoRepository;
 
   @Before()  //這個方法在每個方法執行之前都會執行一遍
   public void setup() {
@@ -99,4 +109,20 @@ public class AccountDemoTest {
         .andDo(MockMvcResultHandlers.print());
     log.info("=================");
   }
+
+  @Test
+  public void testRepositoryCase() throws Exception {
+    StringBuffer sql = new StringBuffer("select username,email from account_demo");
+    Page<Map<String,Object>> data = accountDemoRepository.queryPagingResultMap(sql,0,5, Sort.by("username"));
+    System.out.println(JSON.toJSONString(data,true));
+  }
+
+
+  @Test
+  public void testPageCase() throws Exception {
+    StringBuffer sql = new StringBuffer("select * from account_demo");
+    Page<AccountDemo> data = accountDemoRepository.queryPagingResultList(sql,0,5, Sort.by(Sort.Order.asc("username")));
+    System.out.println(JSON.toJSONString(data,true));
+  }
+
 }
