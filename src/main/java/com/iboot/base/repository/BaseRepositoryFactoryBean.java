@@ -1,4 +1,4 @@
-package com.iboot.core.repository;
+package com.iboot.base.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;

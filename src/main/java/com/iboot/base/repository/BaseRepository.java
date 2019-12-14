@@ -1,4 +1,4 @@
-package com.iboot.core.repository;
+package com.iboot.base.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -61,7 +61,16 @@ public interface BaseRepository<T,ID extends Serializable> extends JpaRepository
 
   Class<T> getDataClass();
 
-
-  Page<T> queryPagingResultList(StringBuffer sql, int page, int size, Sort sort);
+  /**
+   * 取分頁資料回傳List<Map<String,Object>>
+   * @param sql
+   * @param page
+   * @param size
+   * @param sort
+   * @return
+   */
   Page<Map<String, Object>> queryPagingResultMap(StringBuffer sql, int page, int size, Sort sort);
+
+  //Page<T> queryPagingResultList(StringBuffer sql, int page, int size, Sort sort);
+
 }

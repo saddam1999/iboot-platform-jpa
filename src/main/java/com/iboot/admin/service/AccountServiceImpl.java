@@ -1,7 +1,7 @@
 package com.iboot.admin.service;
 
-import com.iboot.admin.domain.User;
-import com.iboot.admin.repository.UserRepository;
+import com.iboot.admin.domain.Account;
+import com.iboot.admin.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class AccountServiceImpl implements AccountService {
 
   @Autowired
-  UserRepository userRepository;
+  AccountRepository userRepository;
 
   @Override
-  public void insert(User user) {
+  public void insert(Account user) {
     userRepository.save(user);
   }
 
   @Override
-  public List<User> query() {
+  public List<Account> query() {
     return userRepository.query("select * from user");
   }
 

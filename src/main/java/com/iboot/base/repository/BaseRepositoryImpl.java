@@ -1,4 +1,4 @@
-package com.iboot.core.repository;
+package com.iboot.base.repository;
 
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;
@@ -89,7 +89,9 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
    */
   @Override
   public List<T> query(String sql) {
-    return entityManager.createNativeQuery(sql,klass).getResultList();
+    Query query =  entityManager.createNativeQuery(sql);
+    query.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+    return query.getResultList();
   }
 
   /**
@@ -108,10 +110,11 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     return klass;
   }
 
-  public Page<T> queryPagingResultList(StringBuffer sql, int page, int size, Sort sort){
-    return queryPagingResult(ResultType.List,sql,page,size,sort);
-  }
 
+
+  /**
+   * 獲取集合Map(帶分頁)
+   */
   public Page<Map<String, Object>> queryPagingResultMap(StringBuffer sql, int page, int size, Sort sort){
     //查詢記錄條數
     String countSql = "select count(1) as cnt from (" + sql.toString() + ") temp ";
@@ -138,51 +141,11 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     return pageInfo;
   }
 
-  /**
-   * 獲取集合(帶分頁)
-   * @author panda
-   */
-  private Page<T> queryPagingResult(ResultType restltType, StringBuffer sql, int page, int size, Sort sort){
-
-    //查詢記錄條數
-    String countSql = "select count(1) as cnt from (" + sql.toString() + ") temp ";
-    //創建查詢對象
-    Query countQuery = entityManager.createNativeQuery(countSql);
-    //獲取總記錄數
-    Object totalCount = countQuery.getSingleResult();
-    //分頁查詢
-    Query queryData = entityManager.createNativeQuery(sql.toString());
-    queryData.setFirstResult(page * size);//當前頁總記錄數
-    queryData.setMaxResults(size);//每頁數量數
-
-    List<T> data = null;
-
-    if(restltType.equals(ResultType.List)){
-      queryData.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.aliasToBean(klass));
-    }
-    if(restltType.equals(ResultType.Map)){
-      queryData.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
-    }
-
-    try {
-      data = queryData.getResultList();
-    } catch(Exception e) {
-      logger.info("執行獲取集合(帶分頁)出錯--{}", e.getMessage());
-    }
-
-    //設置分頁信息
-    Page<T> pageInfo = new PageImpl<T>(data, PageRequest.of(page, size, sort), Long.valueOf(totalCount.toString()));
-    return pageInfo;
-  }
-
-
-
 //  /**
-//   * 獲取集合(帶分頁)
-//   * @author panda
+//   * 獲取Entity集合(帶分頁)
 //   */
-//  public Page<T> getPagingResultList(StringBuffer sql, Class<?> clazz, int page, int size, Sort sort){
-//    List<T> list = null;
+//  public Page<T> queryPagingResultList(StringBuffer sql, int page, int size, Sort sort){
+//
 //    //查詢記錄條數
 //    String countSql = "select count(1) as cnt from (" + sql.toString() + ") temp ";
 //    //創建查詢對象
@@ -191,59 +154,22 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 //    Object totalCount = countQuery.getSingleResult();
 //    //分頁查詢
 //    Query queryData = entityManager.createNativeQuery(sql.toString());
-//    queryData.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.aliasToBean(clazz));
 //    queryData.setFirstResult(page * size);//當前頁總記錄數
 //    queryData.setMaxResults(size);//每頁數量數
+//
+//    List<T> data = null;
+//    queryData.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.aliasToBean(klass));
+//
 //    try {
-//      list = queryData.getResultList();
+//      data = queryData.getResultList();
 //    } catch(Exception e) {
 //      logger.info("執行獲取集合(帶分頁)出錯--{}", e.getMessage());
-//    } finally {
-//      //關閉entityManager
-//      if(entityManager != null) {
-//        entityManager.close();
-//      }
 //    }
 //
 //    //設置分頁信息
-//    Page<T> pageInfo = new PageImpl<T>(list, PageRequest.of(page, size, sort), Long.valueOf(totalCount.toString()));
+//    Page<T> pageInfo = new PageImpl<T>(data, PageRequest.of(page, size, sort), Long.valueOf(totalCount.toString()));
 //    return pageInfo;
 //  }
-//
-//
-//  /**
-//   * 獲取集合(帶分頁)
-//   * @author panda
-//   */
-//  public Page<T> getPagingResultMap(StringBuffer sql, Class<?> clazz, int page, int size, Sort sort){
-//    List<T> list = null;
-//    //查詢記錄條數
-//    String countSql = "select count(1) as cnt from (" + sql.toString() + ") temp ";
-//    //創建查詢對象
-//    Query countQuery = entityManager.createNativeQuery(countSql);
-//    //獲取總記錄數
-//    Object totalCount = countQuery.getSingleResult();
-//    //分頁查詢
-//    Query queryData = entityManager.createNativeQuery(sql.toString());
-//    queryData.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.aliasToBean(clazz));
-//    queryData.setFirstResult(page * size);//當前頁總記錄數
-//    queryData.setMaxResults(size);//每頁數量數
-//    try {
-//      list = queryData.getResultList();
-//    } catch(Exception e) {
-//      logger.info("執行獲取集合(帶分頁)出錯--{}", e.getMessage());
-//    } finally {
-//      //關閉entityManager
-//      if(entityManager != null) {
-//        entityManager.close();
-//      }
-//    }
-//
-//    //設置分頁信息
-//    Page<T> pageInfo = new PageImpl<T>(list, PageRequest.of(page, size, sort), Long.valueOf(totalCount.toString()));
-//    return pageInfo;
-//  }
-
 
 
 }

@@ -1,6 +1,6 @@
 package com;
 
-import com.iboot.core.repository.BaseRepositoryFactoryBean;
+import com.iboot.base.repository.BaseRepositoryFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;

@@ -25,6 +25,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -118,11 +119,30 @@ public class AccountDemoTest {
   }
 
 
-  @Test
+//  @Test
+//  public void testPageCase() throws Exception {
+//    StringBuffer sql = new StringBuffer("select * from account_demo");
+//    Page<AccountDemo> data = accountDemoRepository.queryPagingResultList(sql,0,5, Sort.by(Sort.Order.asc("username")));
+//    System.out.println(JSON.toJSONString(data,true));
+//  }
+
+@Test
   public void testPageCase() throws Exception {
-    StringBuffer sql = new StringBuffer("select * from account_demo");
-    Page<AccountDemo> data = accountDemoRepository.queryPagingResultList(sql,0,5, Sort.by(Sort.Order.asc("username")));
-    System.out.println(JSON.toJSONString(data,true));
+
+//  double num = 1.23;
+//  String str = MessageFormat.format("{0,number,#.#}", num);
+//  System.out.println(str);
+//
+//  double str1 = 1.23;
+//  String str2 = MessageFormat.format("{0,number,#.00#}", str1);
+//  System.out.println(str2);
+
+
+    AccountDemo accountDemo = new AccountDemo();
+    accountDemo.setEmail("999moder1122@gmail.com");
+    accountDemo.setUserName("999moder");
+    accountDemo.setPassWord("999password");
+    accountDemoRepository.save(accountDemo);
   }
 
 }
