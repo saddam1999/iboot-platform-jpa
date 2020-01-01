@@ -5,6 +5,7 @@ import org.hibernate.MappingException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.Configurable;
 import org.hibernate.id.IdentifierGenerator;
+import org.hibernate.id.IdentityGenerator;
 import org.hibernate.internal.util.config.ConfigurationHelper;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
@@ -17,7 +18,7 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.stream.Stream;
 
-public class AccountDemoIdGenerator implements IdentifierGenerator, Configurable {
+public class AccountDemoIdGenerator extends IdentityGenerator implements Configurable {
 
 //  public static final String PREFIX_PARAMETER = "prefix";
 //  public static final String PREFIX_DEFAULT = "";
@@ -68,8 +69,11 @@ public class AccountDemoIdGenerator implements IdentifierGenerator, Configurable
     Date date = new Date();
     Object[] params={date,id.toString()};
     String value = messageFormat.format(params);
-
-
+    if (value != null) {
+      return (Serializable) value;
+    }
+    return super.generate(session, obj);
+   // return value;
 
 //    String msg = messageTemplate;
 //
@@ -86,8 +90,7 @@ public class AccountDemoIdGenerator implements IdentifierGenerator, Configurable
 //        .mapToLong(Long::parseLong)
 //        .max()
 //        .orElse(0L);
-    return value;
-    //return valuePrefix + String.format(numberFormat, super.generate(session, object));
-//    return valuePrefix + String.format(numberFormat, super.generate(session, object));
+
+
   }
 }

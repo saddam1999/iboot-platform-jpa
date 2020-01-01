@@ -1,9 +1,11 @@
 package com.iboot.admin.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.iboot.admin.domain.idgenerator.UserNoIdGenerator;
 import com.iboot.base.domain.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,12 +14,18 @@ import java.util.Date;
 
 
 @Data
+@Table(name = "TBUSER")
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class User extends BaseEntity {
 
   @Id
-  @GenericGenerator(name = "idGenerator", strategy = "uuid")
-  @GeneratedValue(generator = "idGenerator")
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "UserNoIdGenerator")
+  @GenericGenerator(name = "UserNoIdGenerator",
+    parameters = {
+        @org.hibernate.annotations.Parameter(name = UserNoIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
+    },
+    strategy = "com.iboot.admin.domain.idgenerator.UserNoIdGenerator")
   private String userNo;
 
   @Column

@@ -1,6 +1,6 @@
 package com.iboot;
 
-import com.iboot.admin.service.AccountService;
+import com.iboot.admin.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.text.MessageFormat;
 public class TestDAO {
 
   @Autowired
-  private AccountService userService;
+  private UserService userService;
 
   @Test
   public void TestSave(){
