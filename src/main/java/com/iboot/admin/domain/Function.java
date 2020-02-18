@@ -8,16 +8,18 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 @Data
-@Table(name = "TBGROUP")
+@Table(name = "TBFUNCTION")
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Group extends BaseEntity {
+public class Function extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(length = 8)
   private Integer id;
 
+  @Column(length = 8)
+  private Integer functionGroupId;
 
   @Column(length = 50)
   private String name;
@@ -29,11 +31,11 @@ public class Group extends BaseEntity {
   @Enumerated(EnumType.ORDINAL)
   private DisplayEnum display;
 
+  @Column(length = 50)
+  private String displayName;
 
-//  @Column
-//  @Enumerated(EnumType.ORDINAL)
-//  private StatusEnum status;
-
+  @Column(length = 4)
+  private String displayOrder;
 
 
 }

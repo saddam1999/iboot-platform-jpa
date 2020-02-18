@@ -5,7 +5,6 @@ import org.hibernate.MappingException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.Configurable;
 import org.hibernate.id.IdentityGenerator;
-import org.hibernate.id.UUIDGenerator;
 import org.hibernate.internal.util.config.ConfigurationHelper;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;

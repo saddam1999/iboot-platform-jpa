@@ -1,6 +1,6 @@
 package com.iboot.demo.account.repository;
 
-import com.iboot.base.repository.BaseRepository;
+import com.iboot.core.repository.BaseRepository;
 import com.iboot.demo.account.domain.AccountDemo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

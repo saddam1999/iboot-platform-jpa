@@ -1,4 +1,4 @@
-package com.iboot.base.idgenerator;
+package com.iboot.core.idgenerator;
 
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;

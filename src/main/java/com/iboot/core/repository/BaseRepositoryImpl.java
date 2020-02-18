@@ -1,4 +1,4 @@
-package com.iboot.base.repository;
+package com.iboot.core.repository;
 
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;

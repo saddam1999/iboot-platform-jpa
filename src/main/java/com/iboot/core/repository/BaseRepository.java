@@ -1,4 +1,4 @@
-package com.iboot.base.repository;
+package com.iboot.core.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;

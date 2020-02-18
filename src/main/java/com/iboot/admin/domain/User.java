@@ -2,7 +2,7 @@ package com.iboot.admin.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.iboot.admin.domain.idgenerator.UserNoIdGenerator;
-import com.iboot.base.domain.BaseEntity;
+import com.iboot.core.domain.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -30,11 +30,11 @@ public class User extends BaseEntity {
 
   @Column
   @NotEmpty(message = "使用者名稱不能為空")
-  private String username;
+  private String loginId;
 
   @Column
   @NotEmpty(message = "姓名不能為空")
-  private String name;
+  private String chineseName;
 
   @Column
   private String email;

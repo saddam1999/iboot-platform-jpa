@@ -42,8 +42,8 @@ public class TestUser {
     Instant inst = dateOne.toInstant();
     User user = new User();
     user.setEmail("moder1122@gmail.com");
-    user.setName("moder");
-    user.setUsername("moderyeh");
+    //user.setName("moder");
+    //user.setUsername("moderyeh");
     user.setBirthDate(Date.from(inst));
     user.setExpireDate(Date.from(inst));
     userService.insert(user);

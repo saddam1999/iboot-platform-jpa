@@ -1,4 +1,4 @@
-package com.iboot.base.domain;
+package com.iboot.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -8,12 +8,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.util.Date;
 
 
 @Data
 @MappedSuperclass
-public class BaseEntity{
+public class BaseEntity implements Serializable {
     /**
      * 建立時間
      */
@@ -26,7 +27,7 @@ public class BaseEntity{
     /**
      * 建立者
      */
-    @Column(name = "create_by",updatable = false)
+    @Column(name = "creator",updatable = false)
     private String creator;
 
     /**
@@ -41,7 +42,7 @@ public class BaseEntity{
     /**
      * 修改者
      */
-    @Column(name = "update_by",insertable = false)
+    @Column(name = "updater",insertable = false)
     private String updater;
 
 

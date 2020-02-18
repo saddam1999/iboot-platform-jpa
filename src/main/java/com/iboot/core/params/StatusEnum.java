@@ -1,4 +1,4 @@
-package com.iboot.base.params;
+package com.iboot.core.params;
 
 public enum StatusEnum {
   ENABLE("啟用"),
