@@ -1,9 +1,10 @@
-package com.iboot.admin.service;
+package com.iboot.admin.service.impl;
 
 import com.iboot.admin.domain.Group;
 import com.iboot.admin.domain.User;
 import com.iboot.admin.repository.GroupRepository;
 import com.iboot.admin.repository.UserRepository;
+import com.iboot.admin.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
