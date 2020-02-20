@@ -19,10 +19,10 @@ import java.sql.Timestamp;
 @EntityListeners(AuditingEntityListener.class)
 public class AccountDemo {
 
-  @Id
+
   //@GenericGenerator(name = "idGenerator", strategy = "uuid")
   //@GeneratedValue(generator = "idGenerator")
-  @GeneratedValue(generator = "account_demo_generator")
+  @Id
   @GenericGenerator(name = "account_demo_generator",
       parameters = {
           @Parameter(name = "prefix", value = "ACC")
@@ -30,6 +30,7 @@ public class AccountDemo {
           //@Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")
       },
       strategy = "com.iboot.demo.account.domain.idgenerator.AccountDemoIdGenerator")
+  //@GeneratedValue(generator = "account_demo_generator")
   private String id;
 
   @Column(name = "username", unique = true, nullable = false, length = 64)

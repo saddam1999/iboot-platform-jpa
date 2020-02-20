@@ -20,7 +20,6 @@ import java.util.Date;
 public class User extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "UserNoIdGenerator")
   @GenericGenerator(name = "UserNoIdGenerator",
     parameters = {
         @org.hibernate.annotations.Parameter(name = UserNoIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
