@@ -1,9 +1,7 @@
 package com.iboot.base.service;
 
-import com.iboot.base.domain.BaseP01;
 import com.iboot.base.domain.BaseP02;
-import com.iboot.base.domain.keyclass.BaseP02Key;
-import com.iboot.core.repository.BaseRepository;
+import com.iboot.base.domain.compositekey.BaseP02Key;
 
 import java.util.List;
 import java.util.Map;

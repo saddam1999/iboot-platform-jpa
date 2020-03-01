@@ -3,12 +3,14 @@ package com.iboot.admin.domain;
 import com.iboot.core.domain.BaseEntity;
 import com.iboot.core.params.DisplayEnum;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "TBGROUP")
+@Table(name = "TB_GROUP")
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Group extends BaseEntity {
@@ -18,6 +20,8 @@ public class Group extends BaseEntity {
   @Column(length = 8)
   private Integer id;
 
+  @Column(length = 8)
+  private Integer parentId;
 
   @Column(length = 50)
   private String name;
@@ -26,14 +30,8 @@ public class Group extends BaseEntity {
   private String description;
 
   @Column
-  @Enumerated(EnumType.ORDINAL)
-  private DisplayEnum display;
+  private boolean display;
 
-
-//  @Column
-//  @Enumerated(EnumType.ORDINAL)
-//  private StatusEnum status;
-
-
-
+  @Column
+  private boolean defaultGroup;
 }

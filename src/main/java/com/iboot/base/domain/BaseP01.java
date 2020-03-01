@@ -1,5 +1,6 @@
 package com.iboot.base.domain;
 
+import com.iboot.core.domain.BaseEntity;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -10,7 +11,7 @@ import java.io.Serializable;
 @Table(name = "TBBASEP01")
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class BaseP01 implements Serializable {
+public class BaseP01 extends BaseEntity {
 
     @Column(length = 20)
     private String compId;

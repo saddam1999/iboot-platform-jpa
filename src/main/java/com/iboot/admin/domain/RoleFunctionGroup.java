@@ -1,6 +1,8 @@
 package com.iboot.admin.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.iboot.admin.domain.keyclass.RoleFunctionGroupKey;
+import com.iboot.admin.domain.keyclass.RoleFunctionKey;
 import lombok.Data;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -10,8 +12,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "TBROLE_FUNCTION")
+@Table(name = "TB_ROLE_FUNCTION")
 @EntityListeners(AuditingEntityListener.class)
+@IdClass(value = RoleFunctionGroupKey.class)
 @Entity
 public class RoleFunctionGroup {
 

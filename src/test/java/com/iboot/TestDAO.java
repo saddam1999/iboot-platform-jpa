@@ -3,7 +3,7 @@ package com.iboot;
 import com.alibaba.fastjson.JSON;
 import com.iboot.base.domain.BaseP01;
 import com.iboot.base.domain.BaseP02;
-import com.iboot.base.domain.keyclass.BaseP02Key;
+import com.iboot.base.domain.compositekey.BaseP02Key;
 import com.iboot.base.service.BaseP01Service;
 import com.iboot.base.service.BaseP02Service;
 import org.junit.Test;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.MessageFormat;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
