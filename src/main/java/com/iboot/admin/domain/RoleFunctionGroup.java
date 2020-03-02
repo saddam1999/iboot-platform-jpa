@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "TB_ROLE_FUNCTION")
+@Table(name = "TB_ROLE_FUNCTION_GROUP")
 @EntityListeners(AuditingEntityListener.class)
 @IdClass(value = RoleFunctionGroupKey.class)
 @Entity

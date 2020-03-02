@@ -7,5 +7,5 @@ import java.io.Serializable;
 @Data
 public class RoleFunctionGroupKey implements Serializable {
     private Integer roleId;
-    private Integer functionId;
+    private Integer functionGroupId;
 }

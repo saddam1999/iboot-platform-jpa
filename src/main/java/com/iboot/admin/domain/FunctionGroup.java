@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Data
 @Table(name = "TB_FUNCTION_GROUP")
 @EntityListeners(AuditingEntityListener.class)
-@IdClass(value = RoleFunctionKey.class)
 @Entity
 public class FunctionGroup extends BaseEntity {
 
