@@ -10,16 +10,35 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class GroupServiceImpl implements GroupService {
 
+  private GroupRepository groupRepository;
   @Autowired
-  GroupRepository groupRepository;
+  public void setGroupRepository(GroupRepository groupRepository) {
+    this.groupRepository = groupRepository;
+  }
 
   @Override
-  public void insert(Group user) {
-    groupRepository.save(user);
+  public void insert(Group group) {
+    groupRepository.save(group);
+  }
+
+  @Override
+  public void update(Group group) {
+    groupRepository.save(group);
+  }
+
+  @Override
+  public void delete(Integer id) {
+    groupRepository.deleteById(id);
+  }
+
+  @Override
+  public Optional<Group> findById(Integer id) {
+    return groupRepository.findById(id);
   }
 
   @Override

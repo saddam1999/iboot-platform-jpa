@@ -1,8 +1,10 @@
 package com.iboot;
 
 
+import com.alibaba.fastjson.JSON;
 import com.iboot.admin.domain.Group;
 import com.iboot.admin.service.GroupService;
+import com.iboot.base.domain.BaseP02;
 import com.iboot.core.params.StatusEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,8 +23,9 @@ public class TestGroup {
   public void TestSave(){
 
     Group group = new Group();
-    group.setName("GG3");
+    group.setName("GG31");
    // group.setStatus(StatusEnum.DISABLE);
     groupService.insert(group);
+    System.out.println(JSON.toJSONString(group,true));
   }
 }

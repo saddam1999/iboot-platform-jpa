@@ -5,9 +5,17 @@ import com.iboot.admin.domain.User;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface GroupService {
   void insert(Group group);
+  void update(Group group);
+  void delete(Integer id);
+  Optional<Group> findById(Integer id);
+
+
+
+
   List<Group> query();
   List<Map<String, Object>> queryMap();
 }
