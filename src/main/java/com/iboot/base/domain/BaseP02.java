@@ -1,12 +1,11 @@
 package com.iboot.base.domain;
 
-import com.iboot.base.domain.compositekey.BaseP02Key;
+import com.iboot.base.domain.keyclass.BaseP02Key;
 import com.iboot.core.domain.BaseEntity;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @Entity

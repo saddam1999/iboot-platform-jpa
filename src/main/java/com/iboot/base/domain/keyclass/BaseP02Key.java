@@ -1,4 +1,4 @@
-package com.iboot.base.domain.compositekey;
+package com.iboot.base.domain.keyclass;
 
 import lombok.Data;
 

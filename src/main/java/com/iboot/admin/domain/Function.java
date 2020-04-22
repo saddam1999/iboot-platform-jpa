@@ -1,9 +1,7 @@
 package com.iboot.admin.domain;
 
 import com.iboot.admin.domain.keyclass.FunctionKey;
-import com.iboot.base.domain.compositekey.BaseP02Key;
 import com.iboot.core.domain.BaseEntity;
-import com.iboot.core.params.DisplayEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -12,7 +10,7 @@ import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "TB_FUNCTION")
+@Table(name = "TB_FUNCTION",uniqueConstraints = @UniqueConstraint(name = "unique_function_group", columnNames = {"name", "mail"}))
 @EntityListeners(AuditingEntityListener.class)
 @IdClass(value = FunctionKey.class)
 @Entity
@@ -22,6 +20,11 @@ public class Function extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(length = 8)
   private Integer id;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(length = 8)
+  private Integer functionId;
 
   @Id
   @Column(length = 8)

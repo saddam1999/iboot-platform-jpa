@@ -30,7 +30,7 @@ public class AccountDemo {
           //@Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")
       },
       strategy = "com.iboot.demo.account.domain.idgenerator.AccountDemoIdGenerator")
-  //@GeneratedValue(generator = "account_demo_generator")
+  @GeneratedValue(generator = "account_demo_generator")
   private String id;
 
   @Column(name = "username", unique = true, nullable = false, length = 64)
