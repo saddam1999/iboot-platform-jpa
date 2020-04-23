@@ -10,7 +10,8 @@ import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "TB_FUNCTION",uniqueConstraints = @UniqueConstraint(name = "unique_function_group", columnNames = {"name", "mail"}))
+//@Table(name = "TB_FUNCTION",uniqueConstraints = @UniqueConstraint(name = "unique_function_group", columnNames = {"name", "mail"}))
+@Table(name = "TB_FUNCTION")
 @EntityListeners(AuditingEntityListener.class)
 @IdClass(value = FunctionKey.class)
 @Entity

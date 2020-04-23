@@ -32,12 +32,12 @@ public class GroupServiceImpl implements GroupService {
   }
 
   @Override
-  public void delete(Integer id) {
+  public void delete(Long id) {
     groupRepository.deleteById(id);
   }
 
   @Override
-  public Optional<Group> findById(Integer id) {
+  public Optional<Group> findById(Long id) {
     return groupRepository.findById(id);
   }
 

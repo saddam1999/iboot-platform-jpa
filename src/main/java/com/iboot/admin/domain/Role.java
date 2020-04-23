@@ -4,6 +4,7 @@ import com.iboot.core.domain.BaseEntity;
 import com.iboot.core.params.DisplayEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -14,9 +15,11 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Role extends BaseEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(length = 8)
+    @GeneratedValue(generator = "baseIdGenerator")
+    @GenericGenerator(name = "baseIdGenerator",
+            strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
     private Integer id;
 
     @Column(length = 50)

@@ -10,8 +10,8 @@ import java.util.Optional;
 public interface GroupService {
   void insert(Group group);
   void update(Group group);
-  void delete(Integer id);
-  Optional<Group> findById(Integer id);
+  void delete(Long id);
+  Optional<Group> findById(Long id);
 
 
 

@@ -1,8 +1,11 @@
 package com.iboot.core.idgenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SnowflakeIdWorker2nd {
     /** 開始時間截 (2019-01-01) */
-    private final long twepoch = 1587620333700L;
+    private final long twepoch = 1587648704967L;
 
     /** 機器id所佔的位數 */
     private final long workerIdBits = 5L;
@@ -135,21 +138,18 @@ public class SnowflakeIdWorker2nd {
 
     // ==============================Test=============================================
     /** 測試 */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         SnowflakeIdWorker2nd idWorker = new SnowflakeIdWorker2nd(0, 0);
-//        for (int i = 0; i < 10; i++) {
-//            long id = idWorker.nextId();
-//            //System.out.println(Long.toBinaryString(id));//轉為Bit，前面的0省略掉
-//            System.out.println(id);
-//            Thread.sleep(1);
-//        }
-
+        System.out.println(System.currentTimeMillis());
         long start = System.currentTimeMillis();
         int count = 0;
+        List<Long> aa = new ArrayList<Long>();
         for (int i = 0; System.currentTimeMillis()-start<1000; i++,count=i) {
-            idWorker.nextId();
+            long x = idWorker.nextId();
+            System.out.println(x);
         }
         long end = System.currentTimeMillis()-start;
+        System.out.println(aa);
         System.out.println(end);
         System.out.println(count);
     }

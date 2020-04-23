@@ -13,7 +13,8 @@ import java.io.Serializable;
 public class BaseIdGenerator implements IdentifierGenerator{
     @Override
     public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException {
-        SnowflakeIdWorker2nd idWorker = new SnowflakeIdWorker2nd(0, 0);
-        return idWorker.nextId();
+        SnowflakeIdWorker idWorker = new SnowflakeIdWorker(1);
+        Long id = idWorker.nextId();
+        return id;
     }
 }
