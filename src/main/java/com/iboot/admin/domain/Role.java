@@ -9,8 +9,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "TB_ROLE")
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -20,7 +20,7 @@ public class Role extends BaseEntity {
     @GeneratedValue(generator = "baseIdGenerator")
     @GenericGenerator(name = "baseIdGenerator",
             strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
-    private Integer id;
+    private Long id;
 
     @Column(length = 50)
     private String name;

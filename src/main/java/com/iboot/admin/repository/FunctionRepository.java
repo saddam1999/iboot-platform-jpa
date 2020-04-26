@@ -7,7 +7,7 @@ import com.iboot.core.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FunctionRepository extends BaseRepository<Function, FunctionKey> {
+public interface FunctionRepository extends BaseRepository<Function, Long> {
 
 
 }

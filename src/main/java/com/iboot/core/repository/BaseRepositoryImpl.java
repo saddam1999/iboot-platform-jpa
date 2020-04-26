@@ -41,8 +41,21 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
    * @return List<Object[]>
    */
   @Override
-  public List<Object[]> queryForList(String sql) {
+  public List<Object[]> queryBySql(String sql) {
     return entityManager.createNativeQuery(sql).getResultList();
+  }
+
+
+  /**
+   * SQL 查詢後回傳 VO class 集合
+   * @param sql
+   * @return
+   */
+  @Override
+  public List<T> query(String sql) {
+    Query query =  entityManager.createNativeQuery(sql);
+    query.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+    return query.getResultList();
   }
 
   /**
@@ -63,7 +76,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
    * @return Object
    */
   @Override
-  public Object queryData(String sql) {
+  public Object getBySql(String sql) {
     List list = entityManager.createNativeQuery(sql).getResultList();
     if(list.isEmpty()){
       return null;
@@ -82,17 +95,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     return list.get(0);
   }
 
-  /**
-   * SQL 查詢後回傳 VO class 集合
-   * @param sql
-   * @return
-   */
-  @Override
-  public List<T> query(String sql) {
-    Query query =  entityManager.createNativeQuery(sql);
-    query.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
-    return query.getResultList();
-  }
+
 
   /**
    * 執行sql 語法回傳影響列數

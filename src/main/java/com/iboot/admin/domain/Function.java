@@ -10,26 +10,18 @@ import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-//@Table(name = "TB_FUNCTION",uniqueConstraints = @UniqueConstraint(name = "unique_function_group", columnNames = {"name", "mail"}))
-@Table(name = "TB_FUNCTION")
+@Table(name = "TB_FUNCTION",uniqueConstraints = @UniqueConstraint(name = "unique_function01", columnNames = {"id", "function_group_id"}))
 @EntityListeners(AuditingEntityListener.class)
-@IdClass(value = FunctionKey.class)
 @Entity
 public class Function extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(length = 8)
-  private Integer id;
+  private Long id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(length = 8)
-  private Integer functionId;
-
-  @Id
-  @Column(length = 8)
-  private Integer functionGroupId;
+  @Column(name="function_group_id")
+  private Long functionGroupId;
 
   @Column(length = 50)
   private String name;

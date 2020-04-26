@@ -6,6 +6,7 @@ import com.iboot.admin.domain.keyclass.GroupRoleKey;
 import com.iboot.core.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,19 +15,23 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "TB_GROUP_ROLE")
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "TB_GROUP_ROLE",uniqueConstraints = @UniqueConstraint(name = "unique_grouprole01", columnNames = {"group_id", "role_id"}))
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-@IdClass(value = GroupRoleKey.class)
-public class GroupRole{
+public class GroupRole extends BaseEntity{
 
   @Id
-  @Column(length = 8)
-  private Integer groupId;
+  @GeneratedValue(generator = "baseIdGenerator")
+  @GenericGenerator(name = "baseIdGenerator",
+          strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
+  private Long id;
 
-  @Id
-  @Column(length = 8)
-  private Integer roleId;
+  @Column(name="group_id")
+  private Long groupId;
+
+  @Column(name="role_id")
+  private Long roleId;
 
   /**
    * 修改時間

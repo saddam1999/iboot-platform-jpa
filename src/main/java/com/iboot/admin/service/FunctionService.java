@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface FunctionService {
     void insert(Function function);
     void update(Function function);
-    void delete(FunctionKey functionKey);
-    Optional<Function> findById(FunctionKey functionKey);
+    void delete(Long id);
+    Optional<Function> findById(Long id);
 }

@@ -8,7 +8,7 @@ import com.iboot.core.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleFunctionRepository extends BaseRepository<RoleFunction, RoleFunctionKey> {
+public interface RoleFunctionRepository extends BaseRepository<RoleFunction, Long> {
 
 
 }

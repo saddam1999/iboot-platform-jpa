@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface RoleService {
   void insert(Role role);
   void update(Role role);
-  void delete(Integer id);
-  Optional<Role> findById(Integer id);
+  void delete(Long id);
+  Optional<Role> findById(Long id);
 }

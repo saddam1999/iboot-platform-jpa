@@ -5,30 +5,29 @@ import com.iboot.core.domain.BaseEntity;
 import com.iboot.core.params.StatusEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "TB_SUB_FUNCTION")
+@Table(name = "TB_SUB_FUNCTION",uniqueConstraints = @UniqueConstraint(name = "unique_subfunction01", columnNames = {"id", "function_group_id","function_id"}))
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-@IdClass(value = SubFunctionKey.class)
 public class SubFunction extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(length = 8)
-  private Integer id;
+  @GeneratedValue(generator = "baseIdGenerator")
+  @GenericGenerator(name = "baseIdGenerator",
+          strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
+  private Long id;
 
-  @Id
-  @Column(length = 8)
-  private Integer functionId;
+  @Column(name="function_id")
+  private Long functionId;
 
-  @Id
-  @Column(length = 8)
-  private Integer functionGroupId;
+  @Column(name="function_group_id")
+  private Long functionGroupId;
 
   @Column(length = 50)
   private String name;

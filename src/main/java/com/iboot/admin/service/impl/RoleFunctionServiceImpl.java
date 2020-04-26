@@ -31,12 +31,12 @@ public class RoleFunctionServiceImpl implements RoleFunctionService {
     }
 
     @Override
-    public void delete(RoleFunctionKey roleFunctionKey) {
-        roleFunctionRepository.deleteById(roleFunctionKey);
+    public void delete(Long id) {
+        roleFunctionRepository.deleteById(id);
     }
 
     @Override
-    public Optional<RoleFunction> findById(RoleFunctionKey roleFunctionKey) {
-        return roleFunctionRepository.findById(roleFunctionKey);
+    public Optional<RoleFunction> findById(Long id) {
+        return roleFunctionRepository.findById(id);
     }
 }

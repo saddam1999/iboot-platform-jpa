@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface GroupRoleService {
   void insert(GroupRole groupRole);
   void update(GroupRole groupRole);
-  void delete(GroupRoleKey groupRoleKey);
-  Optional<GroupRole> findById(GroupRoleKey groupRoleKey);
+  void delete(Long id);
+  Optional<GroupRole> findById(Long id);
 }

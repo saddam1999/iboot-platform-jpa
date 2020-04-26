@@ -32,12 +32,12 @@ public class FunctionServiceImpl implements FunctionService {
     }
 
     @Override
-    public void delete(FunctionKey functionKey) {
-        functionRepository.deleteById(functionKey);
+    public void delete(Long id) {
+        functionRepository.deleteById(id);
     }
 
     @Override
-    public Optional<Function> findById(FunctionKey functionKey) {
-        return functionRepository.findById(functionKey);
+    public Optional<Function> findById(Long id) {
+        return functionRepository.findById(id);
     }
 }

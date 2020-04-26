@@ -20,8 +20,14 @@ public interface BaseRepository<T,ID extends Serializable> extends JpaRepository
    * @param sql
    * @return List<Object[]>
    */
-  List<Object[]> queryForList(String sql);
+  List<Object[]> queryBySql(String sql);
 
+  /**
+   * SQL 查詢後回傳 VO class 集合
+   * @param sql
+   * @return
+   */
+  List<T> query(String sql);
 
   /**
    * SQL 查詢後回傳 Object List
@@ -35,14 +41,7 @@ public interface BaseRepository<T,ID extends Serializable> extends JpaRepository
    * @param sql
    * @return Object
    */
-  Object queryData(String sql);
-
-  /**
-   * SQL 查詢後回傳 VO class 集合
-   * @param sql
-   * @return
-   */
-  List<T> query(String sql);
+  Object getBySql(String sql);
 
 
   /**

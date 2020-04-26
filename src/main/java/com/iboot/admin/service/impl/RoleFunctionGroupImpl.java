@@ -30,12 +30,12 @@ public class RoleFunctionGroupImpl implements RoleFunctionGroupService {
     }
 
     @Override
-    public void delete(RoleFunctionGroupKey roleFunctionGroupKey) {
-        roleFunctionGroupRepository.deleteById(roleFunctionGroupKey);
+    public void delete(Long id) {
+        roleFunctionGroupRepository.deleteById(id);
     }
 
     @Override
-    public Optional<RoleFunctionGroup> findById(RoleFunctionGroupKey roleFunctionGroupKey) {
-        return roleFunctionGroupRepository.findById(roleFunctionGroupKey);
+    public Optional<RoleFunctionGroup> findById(Long id) {
+        return roleFunctionGroupRepository.findById(id);
     }
 }

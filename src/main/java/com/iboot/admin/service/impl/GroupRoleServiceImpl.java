@@ -30,12 +30,12 @@ public class GroupRoleServiceImpl implements GroupRoleService {
     }
 
     @Override
-    public void delete(GroupRoleKey groupRoleKey) {
-        groupRoleRepository.deleteById(groupRoleKey);
+    public void delete(Long id) {
+        groupRoleRepository.deleteById(id);
     }
 
     @Override
-    public Optional<GroupRole> findById(GroupRoleKey groupRoleKey) {
-        return groupRoleRepository.findById(groupRoleKey);
+    public Optional<GroupRole> findById(Long id) {
+        return groupRoleRepository.findById(id);
     }
 }

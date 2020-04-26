@@ -7,5 +7,5 @@ import com.iboot.core.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GroupRoleRepository extends BaseRepository<GroupRole, GroupRoleKey> {
+public interface GroupRoleRepository extends BaseRepository<GroupRole, Long> {
 }

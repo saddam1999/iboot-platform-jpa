@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface SubFunctionService {
     void insert(SubFunction subFunction);
     void update(SubFunction subFunction);
-    void delete(SubFunctionKey subFunctionKey);
-    Optional<SubFunction> findById(SubFunctionKey subFunctionKey);
+    void delete(Long id);
+    Optional<SubFunction> findById(Long id);
 }

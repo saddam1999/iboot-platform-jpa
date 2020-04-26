@@ -22,8 +22,7 @@ public class Group extends BaseEntity {
           strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
   private Long id;
 
-  @Column(length = 8)
-  private Integer parentId;
+  private Long parentId;
 
   @Column(length = 50)
   private String name;

@@ -3,8 +3,11 @@ package com.iboot.admin.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.iboot.admin.domain.keyclass.FunctionKey;
 import com.iboot.admin.domain.keyclass.RoleFunctionKey;
+import com.iboot.core.domain.BaseEntity;
 import com.iboot.core.params.DisplayEnum;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,22 +16,26 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "TB_ROLE_FUNCTION")
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "TB_ROLE_FUNCTION",uniqueConstraints = @UniqueConstraint(name = "unique_role_function01", columnNames = {"role_Id", "function_group_id","function_id"}))
 @EntityListeners(AuditingEntityListener.class)
-@IdClass(value = RoleFunctionKey.class)
 @Entity
-public class RoleFunction {
-    @Id
-    @Column(length = 8)
-    private Integer roleId;
+public class RoleFunction extends BaseEntity {
 
     @Id
-    @Column(length = 8)
-    private Integer functionGroupId;
+    @GeneratedValue(generator = "baseIdGenerator")
+    @GenericGenerator(name = "baseIdGenerator",
+            strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
+    private Long id;
 
-    @Id
-    @Column(length = 8)
-    private Integer functionId;
+    @Column(name="role_Id")
+    private Long roleId;
+
+    @Column(name="function_group_id")
+    private Long functionGroupId;
+
+    @Column(name="function_id")
+    private Long functionId;
 
     @Column(length = 4)
     private String displayOrder;

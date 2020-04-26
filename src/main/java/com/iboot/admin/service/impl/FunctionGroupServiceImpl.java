@@ -28,12 +28,12 @@ public class FunctionGroupServiceImpl implements FunctionGroupService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         functionGroupRepository.deleteById(id);
     }
 
     @Override
-    public Optional<FunctionGroup> findById(Integer id) {
+    public Optional<FunctionGroup> findById(Long id) {
         return functionGroupRepository.findById(id);
     }
 }

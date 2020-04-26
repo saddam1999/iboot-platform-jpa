@@ -8,7 +8,7 @@ import com.iboot.core.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SubFunctionRepository extends BaseRepository<SubFunction, SubFunctionKey> {
+public interface SubFunctionRepository extends BaseRepository<SubFunction, Long> {
 
 
 }

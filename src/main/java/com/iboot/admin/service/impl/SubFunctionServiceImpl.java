@@ -29,12 +29,12 @@ public class SubFunctionServiceImpl implements SubFunctionService {
     }
 
     @Override
-    public void delete(SubFunctionKey subFunctionKey) {
-        subFunctionRepository.deleteById(subFunctionKey);
+    public void delete(Long id) {
+        subFunctionRepository.deleteById(id);
     }
 
     @Override
-    public Optional<SubFunction> findById(SubFunctionKey subFunctionKey) {
-        return subFunctionRepository.findById(subFunctionKey);
+    public Optional<SubFunction> findById(Long id) {
+        return subFunctionRepository.findById(id);
     }
 }

@@ -5,7 +5,7 @@ import com.iboot.core.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FunctionGroupRepository extends BaseRepository<FunctionGroup, Integer> {
+public interface FunctionGroupRepository extends BaseRepository<FunctionGroup, Long> {
 
 
 }

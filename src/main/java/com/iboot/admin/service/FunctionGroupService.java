@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface FunctionGroupService {
     void insert(FunctionGroup functionGroup);
     void update(FunctionGroup functionGroup);
-    void delete(Integer id);
-    Optional<FunctionGroup> findById(Integer id);
+    void delete(Long id);
+    Optional<FunctionGroup> findById(Long id);
 }

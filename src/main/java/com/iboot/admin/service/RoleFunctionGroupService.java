@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface RoleFunctionGroupService {
     void insert(RoleFunctionGroup roleFunctionGroup);
     void update(RoleFunctionGroup roleFunctionGroup);
-    void delete(RoleFunctionGroupKey roleFunctionGroupKey);
-    Optional<RoleFunctionGroup> findById(RoleFunctionGroupKey roleFunctionGroupKey);
+    void delete(Long id);
+    Optional<RoleFunctionGroup> findById(Long id);
 }
