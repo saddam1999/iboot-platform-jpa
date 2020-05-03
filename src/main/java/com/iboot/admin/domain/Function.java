@@ -16,11 +16,11 @@ import javax.persistence.*;
 public class Function extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(length = 8)
   private Long id;
 
-  @Column(name="function_group_id")
+  @Column(name="function_group_id",length = 8)
   private Long functionGroupId;
 
   @Column(length = 50)

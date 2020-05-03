@@ -27,10 +27,10 @@ public class RoleFunctionGroup extends BaseEntity {
             strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
     private Long id;
 
-    @Column(name="role_id")
+    @Column(name="role_id",length = 8)
     private Long roleId;
 
-    @Column(name="function_group_id")
+    @Column(name="function_group_id",length = 8)
     private Long functionGroupId;
 
     @Column(length = 4)

@@ -19,9 +19,8 @@ import javax.persistence.*;
 public class FunctionGroup extends BaseEntity {
 
     @Id
-    @GeneratedValue(generator = "baseIdGenerator")
-    @GenericGenerator(name = "baseIdGenerator",
-            strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(length = 8)
     private Long id;
 
     @Column(length = 50)

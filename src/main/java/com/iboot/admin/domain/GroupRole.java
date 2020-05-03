@@ -27,10 +27,10 @@ public class GroupRole extends BaseEntity{
           strategy = "com.iboot.core.idgenerator.BaseIdGenerator")
   private Long id;
 
-  @Column(name="group_id")
+  @Column(name="group_id",length = 8)
   private Long groupId;
 
-  @Column(name="role_id")
+  @Column(name="role_id",length = 8)
   private Long roleId;
 
   /**
