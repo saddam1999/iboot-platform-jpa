@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/demo")
 public class HelloController {
 
+    @GetMapping("/index")
+    public String indexThymeleaf(Model model) {
+        model.addAttribute("msg","測試thymeleaf頁面！！！");
+        return "demo/index";
+    }
+
     @GetMapping("/hello")
     public String hello2(Model model) {
         return "/demo/hello";
