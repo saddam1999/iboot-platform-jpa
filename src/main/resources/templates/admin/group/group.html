@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}" href="../../../static/css/fontawesome-all.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootadmin.css}" href="../../../static/css/bootadmin.css">
+    <link rel="stylesheet" th:href="@{/css/datatables.min.css}" href="../../../static/css/datatables.min.css">
+    <link rel="stylesheet" th:href="@{/css/iboot.css}" href="../../../static/css/iboot.css">
+
+    <title>BootAdmin</title>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+        <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
+        <a class="navbar-brand" href="#">iBoot</a>
+
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i> 5</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> 3</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Doe</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
+                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="d-flex">
+        <div class="sidebar sidebar-dark bg-dark">
+            <ul class="list-unstyled">
+                <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+                <li>
+                    <a href="#sm_expand_1" data-toggle="collapse">
+                        <i class="fa fa-fw fa-link"></i> Expandable Menu Item
+                    </a>
+                    <ul id="sm_expand_1" class="list-unstyled collapse">
+                        <li><a href="#">Submenu Item</a></li>
+                        <li><a href="#">Submenu Item</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+            </ul>
+        </div>
+
+        <div class="container content p-4">
+            <div class="row">
+                <div class="col">
+                    <h2 class="mb-4">Group</h2>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col col-sm-12 col-md-6 "></div>
+                                    <div class="col col-sm-12 col-md-6 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#groupForm">Add Group</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <table id="datatables" class="table table-hover" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Position</th>
+                                                    <th>Office</th>
+                                                    <th>Salary</th>
+                                                    <th class="actions">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Tiger Nixon</td>
+                                                    <td>System Architect</td>
+                                                    <td>Edinburgh</td>
+                                                    <td>$320,800</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-edit"></i></a>
+                                                        <a href="#" class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Garrett Winters</td>
+                                                    <td>Accountant</td>
+                                                    <td>Tokyo</td>
+                                                    <td>$170,750</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-edit"></i></a>
+                                                        <a href="#" class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ashton Cox</td>
+                                                    <td>Junior Technical Author</td>
+                                                    <td>San Francisco</td>
+                                                    <td>$86,000</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-edit"></i></a>
+                                                        <a href="#" class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Modal Form Section-->
+                    <div class="modal fade" id="groupForm" tabindex="-1" role="dialog" aria-labelledby="groupFormLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="groupFormLabel">Group</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <input type="description" class="form-control" id="description" placeholder="Description">
+                                        </div>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="display">
+                                            <label class="custom-control-label" for="display">Display</label>
+                                        </div>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="defaultGroup">
+                                            <label class="custom-control-label" for="defaultGroup">Default Group</label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Modal Form Section-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/jquery.min.js}" src="../../../static/js/jquery.min.js"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}" src="../../static/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/datatables.min.js}" src="../../../static/js/datatables.min.js"></script>
+    <script th:src="@{/js/bootadmin.min.js}" src="../../../static/js/bootadmin.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#datatables').DataTable({
+                searching: false //關閉filter功能
+            });
+        });
+    </script>
+</body>
+
+</html>
