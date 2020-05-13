@@ -12,6 +12,6 @@ public class GroupController {
 
     @GetMapping("/")
     public String listGroup(){
-      return PREFIX_GROUP_PAGE+"/group";
+      return PREFIX_GROUP_PAGE+"/groupList";
     }
 }
